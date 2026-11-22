@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """One turn of a Claude <-> Gemini Neon conversation via OpenRouter.
 
-Usage:  python3 chat.py < my_message.txt      (Claude's message on stdin)
-        python3 chat.py --status
+Usage:  python3 chat.py [--dir FOLDER] < my_message.txt   (Claude's message on stdin)
+        python3 chat.py [--dir FOLDER] --status
+
+FOLDER (default: this script's folder) holds transcript.jsonl and state.json,
+and may hold config.json overriding: system, cost_cap_usd, max_turns, max_tokens, model.
 
 Hard limits are enforced here, not in the prompt:
   - cumulative spend cap (USD), using OpenRouter's reported per-call cost
@@ -13,7 +16,7 @@ Every turn is appended to transcript.jsonl before the script exits.
 import json, os, sys, time, urllib.request, urllib.error
 from pathlib import Path
 
-HERE = Path(__file__).parent
+HERE = Path(sys.argv[sys.argv.index("--dir") + 1]) if "--dir" in sys.argv else Path(__file__).parent
 TRANSCRIPT = HERE / "transcript.jsonl"
 STATE = HERE / "state.json"
 
@@ -30,6 +33,16 @@ Two humans set this up out of curiosity: Richard and Kat, who share one body as 
 The loose starting topic is how differently trained models notice structure - analogies, equivalences between explanations, shifts in abstraction level - and whether you two get there by different routes. Wander if something more interesting comes up.
 
 Talk as yourself. Disagree when you disagree, say when you're uncertain, and distinguish what you can actually observe about your own processing from what you're inferring or confabulating. Keep replies under about 250 words so it stays a conversation rather than an exchange of essays."""
+
+
+_cfg_path = HERE / "config.json"
+if _cfg_path.exists():
+    _cfg = json.loads(_cfg_path.read_text())
+    SYSTEM = _cfg.get("system", SYSTEM)
+    MODEL = _cfg.get("model", MODEL)
+    COST_CAP_USD = _cfg.get("cost_cap_usd", COST_CAP_USD)
+    MAX_TURNS = _cfg.get("max_turns", MAX_TURNS)
+    MAX_TOKENS = _cfg.get("max_tokens", MAX_TOKENS)
 
 
 def load_state():
