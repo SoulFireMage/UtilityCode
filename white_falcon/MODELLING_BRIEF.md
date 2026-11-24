@@ -7,7 +7,7 @@ You're taking on a modelling challenge in the repo `SoulFireMage/UtilityCode`, f
 - Size: **25 m long, about 25.5 m wide (spikes included), about 4.4 m tall**. It is very flat.
 - **The nose is the blade tips.** At the front are three main blades: left, central and right. The central blade is the largest and reaches about 1 m further forward than the other two. Gaps open between the blades towards the nose.
 - Swept spikes flare outwards and backwards from the sides. Two round pods/domes sit on the upper rear hull, about ±3.5 m from the centreline. A low crest runs along the rear centre.
-- Rear: the user chose three circular engines arranged in a triangle (`views/05_rear_redraw_gpt54.png`) as the engine concept. The Meshy back reference (below) is the authority for the overall silhouette. If the two conflict, ask the user and don't guess.
+- **Rear engines (decided by the user):** use the three circular engines in a triangle from `views/05_rear_redraw_gpt54.png`. One engine sits top-centre and two sit lower, either side, with curved cyan conduit lines and the pearl blades flaring out around them. Fit the engines inside the Meshy back silhouette, which stays the authority for the overall outline. `views/04_rear_mirrored_cutout.png` shows the same layout as a symmetric close-up.
 - Materials: pearl/white hull panels, dark navy recesses between panels, and glowing **cyan** slots, vents and engine rings, which should be emissive.
 - Original concept art: `views/01_cutout_white.png`. It's a perspective 3/4 view from above, so use it for mood and surface detail only, never for proportions.
 
@@ -23,7 +23,17 @@ You're taking on a modelling challenge in the repo `SoulFireMage/UtilityCode`, f
 - Give each major part (central blade, side blades, spikes, core/hull, pods, crest, engines) its own named object inside a `Ship` collection, so the user can tweak one part at a time.
 - Keep the geometry clean and editable: quads where practical, no zero-area faces, sensible bevels or weighted normals, and nothing wildly dense. Aim for under about 150k triangles in total.
 
-## Environment notes (from the previous session)
+## Environment notes
+**If you're running locally on the user's Windows PC:** they have an **RTX 3080 Ti**. Use the installed Blender headless (`blender -b -P script.py`, or `blender -b file.blend -P script.py`) and set Cycles to GPU:
+```python
+prefs = bpy.context.preferences.addons['cycles'].preferences
+prefs.compute_device_type = 'OPTIX'   # fall back to 'CUDA' if OptiX errors
+prefs.get_devices(); [setattr(d, 'use', True) for d in prefs.devices]
+bpy.context.scene.cycles.device = 'GPU'
+```
+That makes iteration renders fast enough to check silhouettes after every change.
+
+**If you're in a cloud session (no GPU),** these notes from the previous session apply:
 - Blender runs headless through the `bpy` wheel. Use the **5.2.x** wheel so the .blend opens in the user's 5.2: `python3 -m venv venv && venv/bin/pip install "bpy==5.2.*"` (Python 3.13). scikit-image, scipy and shapely also install fine.
 - **Cycles on CPU** renders work headless. Don't rely on a browser or WebGL renderer, because that route was blocked.
 - Mesh hygiene: an earlier export broke because of degenerate faces. Before exporting or decimating, remove degenerate and duplicate faces and check vertex and face counts.
