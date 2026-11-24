@@ -1,0 +1,17 @@
+{
+ "model": "bytedance/seedance-2.5",
+ "prompt": "Cinematic science-fiction film, one continuous 8-second shot, photoreal, anamorphic lens, consistent scale.\n\nSetting: a vast, cavernous docking bay inside an orbital space station \u2014 about 60 metres wide and 30 metres tall, white and grey ribbed walls, overhead gantry cranes, floor hazard markings, blue guide lights. At the far end a huge open bay door with a shimmering blue force-field, the curve of a planet and stars visible beyond it. A few tiny technicians stand near the walls for scale.\n\n0-2.0s: A slim 17-year-old young man with messy dirty-blonde hair, wearing a fitted dark-blue ship suit, walks alone across the empty bay floor toward the centre. Low tracking camera behind and beside him; he looks small against the enormous hall.\n\n2.0-4.7s: He stops, closes his eyes, and dissolves into streams of cyan light that unfold and expand outward. The light solidifies into the starship from the reference image: a 25-metre-long organic white-and-pearl starship with swept, talon-like blade hull sections, dark under-structure and glowing cyan panels and vents. The camera pulls back and tilts up as the ship grows to fill the bay; the ship is about fifteen times the length of the technicians, its nose near the gantry cranes.\n\n4.7-6.3s: The ship lifts gently off the deck on hovering cyan thrusters and slowly rotates 180 degrees in place to face the open bay door, dust and loose sheets swirling, technicians shielding their faces.\n\n6.3-8s: Its engines flare bright blue and the ship accelerates smoothly out through the force-field door into space, shrinking toward the planet as the camera holds inside the bay.\n\nKeep the starship design faithful to the reference image. Sound: footsteps echoing, a rising harmonic hum during the transformation, deep engine roar on take-off.",
+ "duration": 8,
+ "resolution": "720p",
+ "aspect_ratio": "16:9",
+ "generate_audio": true,
+ "seed": 4217,
+ "input_references": [
+  {
+   "type": "image_url",
+   "image_url": {
+    "url": "<ship reference image as data URL>"
+   }
+  }
+ ]
+}
