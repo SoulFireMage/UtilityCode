@@ -1,6 +1,6 @@
 # Modelling brief: Gawain's starship (White Falcon)
 
-You're taking on a modelling challenge in the repo `SoulFireMage/UtilityCode`, folder `white_falcon/`. The goal is to build a clean, recognisable, **hard-surface** Blender model of a starship from one of the user's stories. The user will open and keep working on it in **Blender 5.2** on Windows, so your output must open there. Work in British English with the user, who are a plural system; address them as "we".
+You're taking on a modelling challenge in the repo `SoulFireMage/UtilityCode`, folder `white_falcon/`. The goal is to build a clean, recognisable, **hard-surface** Blender model of a starship from one of the user's stories. The user will open and keep working on it in **Blender 5.2** on Windows, so your output must open there. 
 
 ## The ship
 - Gawain is a 17-year-old who transforms into this ship, so it is a character as well as a vehicle. It should feel elegant and organic: swept, talon-like blades, not a boxy fighter.
