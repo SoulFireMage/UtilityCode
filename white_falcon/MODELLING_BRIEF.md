@@ -29,6 +29,7 @@ You're taking on a modelling challenge in the repo `SoulFireMage/UtilityCode`, f
 prefs = bpy.context.preferences.addons['cycles'].preferences
 prefs.compute_device_type = 'OPTIX'   # fall back to 'CUDA' if OptiX errors
 prefs.get_devices(); [setattr(d, 'use', True) for d in prefs.devices]
+bpy.context.scene.render.engine = 'CYCLES'   # make Cycles the active renderer (new scenes default to Eevee)
 bpy.context.scene.cycles.device = 'GPU'
 ```
 That makes iteration renders fast enough to check silhouettes after every change.
